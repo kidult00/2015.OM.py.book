@@ -28,6 +28,8 @@ Git实现的是在本地和远端进行版本管理。
 
 - 最后一步就是把包子送到**货架/客人的桌上**。公之于众的货架，就是远程仓库remote repository，丑媳妇终于见公婆啦。
 
+配合下面这张图，我们对Git就有一个基本概念了。
+
 ![](http://blog.osteele.com/images/2008/git-transport.png)
 
 ####2.Head & branch & master & origin
@@ -36,7 +38,7 @@ Git系统的实质更像是一棵大树，树干（就是Head啦）是最后一�
 
 
 用技术性语言描述，分支用来将特性开发绝缘开来。在创建仓库的时候，master 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
-![via:rogerdudler.github.io](http://rogerdudler.github.io/git-guide/img/branches.png)
+![](http://rogerdudler.github.io/git-guide/img/branches.png  "via:rogerdudler.github.io")
 
 那origin又是什么？origin是远程默认的仓库。clone完成之后，Git会自动将远程仓库命名为origin。
 
@@ -46,13 +48,19 @@ Git系统的实质更像是一棵大树，树干（就是Head啦）是最后一�
 
 ####3.工作流：add & commit & push
 
-* 把包子从桌子挪到蒸笼，叫add——汇报ppt初稿写成；
-* 把包子从蒸笼挪到盘子，叫commit——汇报ppt完稿存到u盘/网盘什么的；
-* 把包子从盘子挪到货架，叫push——汇报ppt发送到boss邮箱。
+* 把包子从桌子挪到蒸笼，叫add————已修改modified————汇报ppt初稿写成；
+* 把包子从蒸笼挪到盘子，叫commit————已暂存staged————汇报ppt完稿存到u盘/网盘什么的；
+* 把包子从盘子挪到货架，叫push————已提交commited——汇报ppt发送到boss邮箱。
 
 ![](http://rogerdudler.github.io/git-guide/img/trees.png)
 
-剧透 ``git commit -am = git add + git commit``
+Git的好处之一是，包子包好后，还可以回退……
+![](http://marklodato.github.io/visual-git-guide/basic-usage.svg "via 图解Git")
+
+捷径：
+![](http://marklodato.github.io/visual-git-guide/basic-usage-2.svg)
+
+
 
 ###二、配置
 1.工作目录
@@ -67,11 +75,11 @@ Git系统的实质更像是一棵大树，树干（就是Head啦）是最后一�
 
 **需要进入目标目录进行操作**
 
-创建新仓库：``git init``
+* 创建新仓库：``git init``
 
-创建一个本地仓库的克隆版本：``git clone /path/to/repository ``
+* 创建一个本地仓库的克隆版本：``git clone /path/to/repository ``
 
-克隆远端服务器上的仓库： ``git clone username@host:/path/to/repository ``
+* 克隆远端服务器上的仓库： ``git clone username@host:/path/to/repository ``
 
 ####2.查询
 ``git status``
@@ -95,7 +103,9 @@ Staging Area:commit前把文件们收集到一起，以便打包commit。
 
 "commit" 可以理解为一次快照，帮助我们把所有改动以timeline的方式组织起来。
 
-* 提交改动(到head，但还没到远程服务器)：``git commit -m "代码提交信息"``
+* 提交改动(到head，但还没到远程服务器)：``git commit -m "代码提交信息"`` git commit -m 'Add all files'
+
+* 把所有当前目录下的文件加入暂存区域再运行commit：``git commit -a``
 
 * 提交到远程仓库：``git push origin master`` （可以把 master 换成你想要推送的任何分支）。
 如果还没有克隆现有仓库，并想将仓库连接到某个远程服务器：``git remote add origin <server>``。
@@ -107,25 +117,36 @@ Staging Area:commit前把文件们收集到一起，以便打包commit。
 
 ####6.pull/拉取
 
-拉取远程仓库的默认branch：``git pull origin master``
+更新本地仓库至最新改动：``git pull origin master``
  
 
-####7.checkout/切换分支
+####7.checkout/切换
+checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工作目录，也可用于切换分支
 
 * 切换分支： ``git checkout <branch>`` 
 
 * 新建并切换到分支：``git checkout -b new_branch`` 等同于：``git branch new_branch`` + ``git checkout new_branch``
 
+* 把文件从暂存区域复制到工作目录，用来丢弃本地修改：``git checkout --<files> ``
+
+* 回滚到复制最后一次提交:``git checkout HEAD -- <files>``
+
+
 ####8.diff/比对
 ``git diff``
 
-####9.reset
-* 从index中移除：``git reset`` 
+####9.reset/撤销
+* 从index中撤销所有文件：``git reset`` 
+
+* 从index中撤销最后一次add的文件：``git reset --<flies>`` 
+
+* 恢复之前版本：``git reset --hard``
 
 * 回滚到最近一次：``git checkout -- <target>``
 
+
 ####10.merge
-``git merge``
+合并其他分支到当前分支：``git merge``
 
 ####11.remove & clean
 
@@ -133,7 +154,19 @@ Staging Area:commit前把文件们收集到一起，以便打包commit。
 
 * 删除分支``git branch -d <branch name>``
 
-###Ref
-1. [Git简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
+###待解决问题
+* 每次push需要输入github用户名密码
 
-2. [What are the git concepts of HEAD, master, origin?](http://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin)
+
+###Ref
+[1]. [Git简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
+
+[2]. [What are the git concepts of HEAD, master, origin?](http://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin)
+
+[3]. [Try Git](https://try.github.io/)
+
+[4]. [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)
+
+[5]. [Pro Git中文版](https://github.com/progit/progit/tree/master/zh)
+
+[6]. [Gitmagic中文版](https://github.com/blynn/gitmagic/tree/master/zh_cn)
