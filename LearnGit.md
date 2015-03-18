@@ -1,17 +1,17 @@
 ###Git
 
-Git是一套版本管理系统。看到“版本管理”，一大部分盆友已经转身想走，在你握着门把手准备开门走人时，请最后听我说一句：人人都需要版本管理。
+Git是一套版本管理系统。看到“Git版本管理”，一大部分盆友已经转身想走，在你握着门把手准备开门走人时，请最后听我说一句：人人都需要版本管理。
 
 试过半夜写汇报ppt吗？'汇报ppt'→'汇报ppt1'→'汇报ppt11'→'汇报ppt2015-03-17'→'汇报ppt2015-03-17新'→'汇报ppt2015-03-17新1'……无休止的命名斗争，这就是自然而然的版本管理，只不过，没有好的工具，所以显得一团mess。
 
 无论学生党还是设计师（改20个版本后终于顺利用回第1版），无论公众号运营还是音乐人，都持续产出着自己的“半成品/作品”。99.999%的作品都不可能一气呵成，比如这篇笔记的第一个commit版本，简直惨不忍睹。如果有版本管理意识，以及高效、方便的工具，生活也许可以简单许多，更不要说天有不测风云的停电忘保存、脑残删备份等等好事等着我们。
 
-来吧，fork有用有趣的东西，git你应该在意的东西，日拱一卒，打造我们的作品。
+来吧，fork有用有趣的东西，Git你应该在意的东西，日拱一卒，打造我们的作品。
 
 
-####一、git主要概念
+####一、Git主要概念
 
-git实现的是在本地和远端进行版本管理。
+Git实现的是在本地和远端进行版本管理。
 
 
 ####1.工作空间
@@ -30,12 +30,18 @@ git实现的是在本地和远端进行版本管理。
 
 ![](http://blog.osteele.com/images/2008/git-transport.png)
 
-####2.Head & branch
+####2.Head & branch & master & origin
 
-git系统的实质更像是一棵大树，树干（就是Head啦）是最后一次提交的成果。在树干上，你可以开无数的分支（就是branch啦）胡弄，弄乱了也不怕，大不了剪掉再开一个，树干不受任何影响。
+Git系统的实质更像是一棵大树，树干（就是Head啦）是最后一次提交的成果。在树干上，你可以开无数的分支（就是branch啦）胡弄，弄乱了也不怕，大不了剪掉再开一个，树干不受任何影响。折腾ok的分支，最后可以merge到默认branch也就是master上。
+
 
 用技术性语言描述，分支用来将特性开发绝缘开来。在创建仓库的时候，master 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
-![](http://rogerdudler.github.io/git-guide/img/branches.png)
+![via:rogerdudler.github.io](http://rogerdudler.github.io/git-guide/img/branches.png)
+
+那origin又是什么？origin是远程默认的仓库。clone完成之后，Git会自动将远程仓库命名为origin。
+
+那Head和master又是什么关系？Head其实只是个指针，指向当前最近commit的branch。而master是本地默认的branch，所以Head经常都是指向master。另外Head是官方定义的，而master和origin都是大家常用的命名，并不一定要叫master和origin。<sup>[2]</sup>
+
 
 
 ####3.工作流：add & commit & push
@@ -46,7 +52,7 @@ git系统的实质更像是一棵大树，树干（就是Head啦）是最后一�
 
 ![](http://rogerdudler.github.io/git-guide/img/trees.png)
 
-
+剧透 ``git commit -am = git add + git commit``
 
 ###二、配置
 1.工作目录
@@ -54,6 +60,8 @@ git系统的实质更像是一棵大树，树干（就是Head啦）是最后一�
 3.远程仓库
 
 ###三、常用命令
+
+最常用：``git command --help``
 
 ####1.创建
 
@@ -68,82 +76,64 @@ git系统的实质更像是一棵大树，树干（就是Head啦）是最后一�
 ####2.查询
 ``git status``
 
-* staged:Files are ready to be committed.
-* unstaged:Files with changes that have not been prepared to be commited.
-* untracked:Files aren't tracked by Git yet. This usually indicates a newly created file.
-* deleted:File has been deleted and is waiting to be removed from Git.
+* staged:已在index，等待被commit.
+* unstaged:文件做了改动，但还不能被commit.
+* untracked:Git还没有开始跟踪，需要先add.
+* deleted:文件已被删除，等待remove.
 
-####3.添加/add
+Staging Area:commit前把文件们收集到一起，以便打包commit。
 
-添加到暂存区（让git开始跟踪更改）：``git add <filename>`` 或 ``git add *``
+####3.add/添加
 
-add all:You can also type ``git add -A`` . where the dot stands for the current directory, so everything in and beneath it is added. The -A ensures even file deletions are included.
+* 添加到暂存区（让Git开始跟踪更改，也就是从untracked变为tracked）：``git add <filename>`` 或 ``git add *``
 
-git reset:
-You can use ``git reset <filename>`` to remove a file or files from the staging area.
+* 添加全部文件：``git add -A``， -A 表示包含删除的文件。
 
-####4.提交/commit
+* git reset: ``git reset <filename>`` 从staging area移除文件。
 
-Staging Area:A place where we can group files together before we "commit" them to Git.
+####4.commit/提交
 
-Commit
-A "commit" is a snapshot of our repository. This way if we ever need to look back at the changes we've made (or if someone else does), we will see a nice timeline of all changes.
+"commit" 可以理解为一次快照，帮助我们把所有改动以timeline的方式组织起来。
 
-提交改动(到head，但还没到远程服务器)：``git commit -m "代码提交信息"``
+* 提交改动(到head，但还没到远程服务器)：``git commit -m "代码提交信息"``
 
-提交到远程仓库：``git push origin master`` 可以把 master 换成你想要推送的任何分支。
-如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：
-``git remote add origin <server>``这样就将改动推送到所添加的服务器上去了。
+* 提交到远程仓库：``git push origin master`` （可以把 master 换成你想要推送的任何分支）。
+如果还没有克隆现有仓库，并想将仓库连接到某个远程服务器：``git remote add origin <server>``。
 
-####5.推送/push
+####5.push/推送
 
-The push command tells Git where to put our commits when we're ready
+将文件推送到远程仓库中：``git push -u origin master``。远程仓库默认叫**origin** 。-u 告诉Git记住参数，下次可以直接使用push。
 
-The name of our remote is **origin** and the default local branch name is **master**.
-The -u tells Git to remember the parameters, so that next time we can simply run git push and Git will know what to do. Go ahead and push it!
 
-``git push -u origin master``
+####6.pull/拉取
 
-####6.pull
-
-We can check for changes on our GitHub repository and pull down any new changes by running:
-
-``git pull origin master``
+拉取远程仓库的默认branch：``git pull origin master``
  
 
-####7.分支
+####7.checkout/切换分支
 
+* 切换分支： ``git checkout <branch>`` 
 
-另开分支
+* 新建并切换到分支：``git checkout -b new_branch`` 等同于：``git branch new_branch`` + ``git checkout new_branch``
 
-When developers are working on a feature or bug they'll often create a copy (aka. branch) of their code they can make separate commits to. Then when they're done they can merge this branch back into their main master branch.
-
-切换分支
-
-You can switch branches using the ``git checkout <branch>`` command.
-
-ou can use:
-``git checkout -b new_branch``
-to checkout and create a branch at the same time. This is the same thing as doing:
-``git branch new_branch``
-``git checkout new_branch``
-
-####8.比对 diff
+####8.diff/比对
 ``git diff``
 
-####9.reset和checkout
-``git reset`` did a great job of unstaging
-Files can be changed back to how they were at the last commit by using the command: ``git checkout -- <target>``
+####9.reset
+* 从index中移除：``git reset`` 
 
+* 回滚到最近一次：``git checkout -- <target>``
 
 ####10.merge
 ``git merge``
 
 ####11.remove & clean
 
-``git rm`` command which will not only remove the actual files from disk, but will also stage the removal of the files
+* 从硬盘和index移除文件：``git rm`` 
 
-``git branch -d <branch name>``
+* 删除分支``git branch -d <branch name>``
 
 ###Ref
-[Git简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
+1. [Git简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
+
+2. [What are the git concepts of HEAD, master, origin?](http://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin)
