@@ -9,7 +9,7 @@ Git是一套版本管理系统。看到“Git版本管理”，一大部分盆�
 来吧，fork有用有趣的东西，Git你应该在意的东西，日拱一卒，打造我们的作品。
 
 
-####一、Git主要概念
+###一、Git主要概念
 
 Git实现的是在本地和远端进行版本管理。
 
@@ -21,12 +21,17 @@ Git实现的是在本地和远端进行版本管理。
 想象一下，我们开一个包子店~ 
 
 - 首先，得有一张**大桌子**用来和面、擀皮儿、包馅等等，这张桌子相当于workspace，随你折腾的地方，工作主要都在这里进行。
+![](http://upload-images.jianshu.io/upload_images/149-73085ee7d703bab8.png)
 
 - 然后，包好的包子们会放到一个**蒸笼**里，等待被蒸，这个蒸笼就是index暂存区。蒸笼用来放我们想保留的成品或半成品，至于选哪些卖出去，这是以后考虑的事情。
+![](http://upload-images.jianshu.io/upload_images/149-7b32a1a9999e8db2.png)
 
 - 下一步，蒸包子。蒸好的包子已经可以吃了，但是我们还是得先把它们从蒸笼拿出来放在**盘子**里。盘子就类似本地仓库local repository，里面都是等待出货的好东西。当然，你也可以在最后一刻把看不顺眼的包子扔掉，或者自己吃掉。
+![](http://upload-images.jianshu.io/upload_images/149-2fb9d577ef59ee74.png)
 
 - 最后一步就是把包子送到**货架/客人的桌上**。公之于众的货架，就是远程仓库remote repository，丑媳妇终于见公婆啦。
+![](http://upload-images.jianshu.io/upload_images/149-c67c02b28b761433.png)
+
 
 配合下面这张图，我们对Git就有一个基本概念了。
 
