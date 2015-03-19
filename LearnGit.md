@@ -162,6 +162,11 @@ checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工
 ###待解决问题
 * ~~每次push需要输入github用户名密码~~ 用ssh模式push
 
+###最常用命令
+
+1. add： ``git add -A``
+2. commit：``git commit -m "annotation"``
+3. push：``git push -u origin master``
 
 ###Ref
 [1]. [Git简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
