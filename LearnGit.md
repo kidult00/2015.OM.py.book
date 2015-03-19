@@ -74,7 +74,7 @@ Git的好处之一是，包子包好后，还可以回退……
 
 ###三、常用命令
 
-最常用：``git command --help``
+常用：``git command --help``
 
 ####1.创建
 
@@ -160,7 +160,7 @@ checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工
 * 删除分支``git branch -d <branch name>``
 
 ###待解决问题
-* 每次push需要输入github用户名密码
+* ~~每次push需要输入github用户名密码~~ 用ssh模式push
 
 
 ###Ref
