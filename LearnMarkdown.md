@@ -1,11 +1,18 @@
 
+# Markdown是什么
+
+
+
+#为什么用 Markdown
+
 使用Markdown标记语法进行写作有几个好处：
 
 * 不会为了专门调整格式而打断思路
 * 跨平台，在支持markdown格式的编辑器、网页、工具里都显示良好 
 
+#如何使用 Markdown
 
-#标题
+##标题
 
 	# 一级标题
 	## 二级标题
@@ -14,14 +21,14 @@
 	##### 五级标题
 	###### 六级标题
 
-#强调
+##强调
 
 * 斜体：``*``文字``*`` 或 ``_``文字``_``， 效果：*斜体* 。
 * 粗体：``**``文字``**`` 或 ``__``文字``__``， 效果：__粗体__ 。
 * 删除线：``~~``文字``~~`` ， 效果：~~删除线~~ 。
 
 
-#列表
+##列表
 
 有序列表 ``1.`` 、``2.`` ……
 
@@ -35,7 +42,7 @@
 - -号列表效果
 + +号列表效果
 
-#链接
+##链接
 
 ``[链接名字](链接地址)``
 
@@ -61,13 +68,13 @@
 [1]: http://www.uegeek.com
 <br>
 
-#上标和下标
+##上标和下标
 
 
 上标 ``<sup></sup>``，效果<sup>[12]</sup> ；
 下标 ``<sub></sub>``，效果<sub>[34]</sub> ；
 
-#代码和语法高亮
+##代码和语法高亮
 
 行内代码 `` `code` `` 后面继续可以有文字。
 
@@ -83,7 +90,7 @@ s = "Python syntax highlighting"
 print s
 ```
 
-#表格
+##表格
 
 
 Colons can be used to align columns.
@@ -116,7 +123,7 @@ Markdown | Less | Pretty
 *Still* | `renders` | **nicely**
 1 | 2 | 3
 
-#引用Blockquotes
+##引用Blockquotes
 
 > 从前
 > 有座山.
@@ -127,7 +134,7 @@ Markdown | Less | Pretty
 Inline HTML
 
 
-#线Horizontal Rule
+##线Horizontal Rule
 
 
 
