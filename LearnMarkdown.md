@@ -1,6 +1,7 @@
 
 # Markdown是什么
 
+Markdown 是为网络书写而生的，它的理念是，能让文档更容易读、写和随意改。可以这样理解，HTML 是一种发布的格式，Markdown 是一种书写的格式。用 Markdown 来书写，可以让我们集中于“写”本身，不需要被格式、标记文本语义等旁枝末节所干扰。就像点蜡烛看书，看书是正事，但如果蜡烛老灭，就不得不经常停下来再把它点着，然后继续看书。Markdown 给了我们一套小工具，把蜡烛升级成了灯泡~
 
 
 #为什么用 Markdown
@@ -8,6 +9,7 @@
 使用Markdown标记语法进行写作有几个好处：
 
 * 不会为了专门调整格式而打断思路
+* Markdown 的标记很结构化，能够帮助我们厘清写作思路以及文章结构
 * 跨平台，在支持markdown格式的编辑器、网页、工具里都显示良好 
 
 #如何使用 Markdown
@@ -149,4 +151,9 @@ Inline HTML
 三个下划线``___``
 
 ___
+
+
+#Ref
+
+[https://guides.github.com/features/mastering-markdown/](https://guides.github.com/features/mastering-markdown/)
 
