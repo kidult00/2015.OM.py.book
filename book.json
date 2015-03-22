@@ -1,0 +1,8 @@
+{
+    "plugins": [
+        "disqus"
+    ],
+    "pluginsConfig": {
+        "shortName": "<你刚才注册的shortName>"
+    }
+}
