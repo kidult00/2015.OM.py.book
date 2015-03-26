@@ -166,7 +166,8 @@ checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工
 
 1. add： ``git add -A``
 2. commit：``git commit -m "annotation"``
-3. push：``git push -u origin master``
+3. push：``git remote add origin git@github.com:kidult00/xxxx``,
+``git push -u origin master``
 
 ###Ref
 [1]. [Git简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
