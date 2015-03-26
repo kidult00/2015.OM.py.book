@@ -161,7 +161,10 @@ checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工
 
 ###待解决问题
 * ~~每次push需要输入github用户名密码~~ 用ssh模式push
-
+* push了空目录后，没有生成目录，遇到 Git submodule 问题
+	[git不能add、commit子文件夹？](http://www.v2ex.com/t/69360)
+* [添加SSH](https://help.github.com/articles/generating-ssh-keys/)
+	
 ###最常用命令
 
 1. add： ``git add -A``
