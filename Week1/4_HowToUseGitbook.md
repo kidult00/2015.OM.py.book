@@ -50,6 +50,8 @@ GitBook 至少包含 README 和 SUMMARY
     	* [We love feedback](part2/feedback_please.md)
 	    * [Better tools for authors](part2/better_tools.md)
 
+重新生成目录 ``gitbook init``
+
 [How to use Gitbook](https://github.com/GitbookIO/gitbook#how-to-use-it)
 
 [Gitbook official help](http://help.gitbook.com/index.html)
