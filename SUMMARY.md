@@ -6,6 +6,6 @@
 	* [学习使用Git进行版本管理](Week1/3_LearnGit.md)
 	* [学习使用Gitbook发布开源书籍](Week1/4_HowToUseGitbook.md)
 	* [为什么使用邮件列表](Week1/5_Why-Mailling-List.md)
-	* [开学心得](Week1/1_OpeningNote.md)
+	* [开学大会心得](Week1/1_OpeningNote.md)
 * [Week2](README.md)
 	* [MiniProject:Guess the number](Week2/MiniProject-GuessTheNumber.md)
