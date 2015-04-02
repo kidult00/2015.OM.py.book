@@ -160,7 +160,7 @@ checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工
 * 删除分支``git branch -d <branch name>``
 
 ###待解决问题
-* ~~每次push需要输入github用户名密码~~ 用ssh模式push
+* ~~每次push需要输入github用户名密码~~ 用ssh模式push,[Generating SSH keys](https://help.github.com/articles/generating-ssh-keys)
 * push了空目录后，没有生成目录，遇到 Git submodule 问题
 	[git不能add、commit子文件夹？](http://www.v2ex.com/t/69360)
 * 每次push需要输入用户名密码问题
