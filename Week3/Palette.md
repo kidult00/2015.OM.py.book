@@ -13,6 +13,8 @@
     + 可用: 有画笔,有颜色,可点绘
     + 合格: 有画笔,有颜色,可点绘,可回放
     + 天才: 有画笔,有颜色,可点绘,可回放,回放速度可调节,回放可输出为文件
+
+http://www.codeskulptor.org/#user39_mI9h518rF5_1.py
    
 #分析
 实现顺序
@@ -82,4 +84,28 @@
 	def mouse_handler(position):
     …
     
-这里的参数是一对数字（怎么觉得有点坑）
+这里的参数是一对数字（怎么觉得有点坑）。如果只需要用到点坐标，直接用变量读到坐标就能调用了：
+
+	point_pos = list(pos)
+
+但这里需要取到x和y的值，用来计算三角形的三个点的坐标。画个图来帮助理解
+
+![](/Users/ennolin/Pictures/Triangle.png)
+
+
+为什么提示undefined？
+
+	def mouseclick(pos):
+	    global circle_pos,triangle_pos
+	    circle_pos = list(pos)
+	    x = pos[0]
+	    y = pos[1]
+	    triangle_pos = [[x, y-tri_height],[x+2*tri_height,y+tri_height],[x-2*tri_height,y+tri_height]]
+
+	def draw(canvas):
+    	canvas.draw_circle(circle_pos, BALL_RADIUS, 1, "Black")
+    	canvas.draw_polygon(triangle_pos, 1, "Black")
+
+改成分别定义三角形的三个坐标，用draw_polygon可以画出来。***为什么？？***
+	
+	canvas.draw_polygon([triangle_1,triangle_2,triangle_3], 1, "Black")
