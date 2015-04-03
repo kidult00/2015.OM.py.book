@@ -14,22 +14,24 @@
     + 天才: 有画笔,有颜色,可点绘,可回放,回放速度可调节,回放可输出为文件
 
 [作业Codeskulptor源码链接](http://www.codeskulptor.org/#user39_mI9h518rF5_1.py)
+
+http://www.codeskulptor.org/#user39_mI9h518rF5_5.py
    
 #分析
 实现顺序
 
-- 画三种形状
+- 画三种形状 【done】
 	+ 圆形怎么画
 	+ 三角怎么画
 	+ 方形怎么画
-- 保存已绘图形
-- 设置形状
-- 设置预设的颜色
+- 保存已绘图形 【done】
+- 设置形状 【done】
+- 设置颜色 【done】
 - 设置RGB颜色
 - 点击任意一处可绘制
 	+ 特殊位置
 	+ 重叠位置
-- 记录1024次
+- 记录1024次 【done】
 - 回放 
 	+ 调节速度
 - 输出为文件
@@ -125,16 +127,6 @@
 
 可以先进行圆形/三角形/正方形的判断，然后存入list中：
 
-	x = pos[0]
-    y = pos[1]
-
-    if shape == "circle":
-        pos = list(pos)
-    elif shape == "triangle":
-        pos = [(x, y - Radius),(x + 2*Radius, y + Radius),(x - 2*Radius, y + Radius)]
-    else:
-        pos = [(x - Radius , y - Radius),(x + Radius , y - Radius),(x + Radius , y + Radius),(x - Radius , y + Radius)]
-
     shape_list.append(pos)
    
 ###4.设置形状
@@ -202,3 +194,76 @@ a_list.append([5, 6, 7]) |
 print a_list |
 
 append里面每个记录应该用[]。修改后继续报错 - - 。检查代码后发现 ``if shapes[0] == "circle":`` 调用错了list中shape的位置，修改0为1。终于把三种图形画出来了。
+
+###5.设置颜色
+
+思路自然是像坐标一样记录到list中，但是这样写完，运行结果是更换颜色后，所有点的颜色都跟着变了。
+
+	def draw(canvas):
+	    global ShapeType,ShapeColor,shape_list,Radius
+	    for shapes in shape_list:
+	        if shapes[1] == "circle":
+	            canvas.draw_circle(shapes[0],Radius, 1, "Black",ShapeColor)
+	        else:
+	            canvas.draw_polygon(shapes[0], 1, "Black",ShapeColor)
+
+问题出在draw函数中，用了全局的ShapeColor，而不是shape_list中的存放的颜色记录。修改成以下代码后文件解决：
+
+	if shapes[1] == "circle":
+            canvas.draw_circle(shapes[0],Radius, 1, "Black",shapes[2])
+   	else:
+            canvas.draw_polygon(shapes[0], 1, "Black",shapes[2])
+            
+###6.设置RGB颜色
+
+
+###7.点击任意一处可绘制
+
+特殊位置
+
+重叠位置
+
+###8.记录1024次 
+
+思路：每click（还是draw）一次，计数器+1。
+
+    if clickCount < 1025 :
+        shape_list.append([pos,ShapeType,ShapeColor])
+        clickCount += 1
+
+画布上需要给出当前点击计数，不然不知道点了多少次。。
+
+	canvas.draw_text(clickCount,(10,10),12,"green","Verdana")
+
+错误提示：``TypeError: text must be a string``，又忘记转为字符串了。
+
+	canvas.draw_text(str(clickCount)+"st click" ,(10,10),12,"black")
+	
+Done.
+
+###9.回放 
+
+之前有同学剧透是用timer控制。先去doc里面查了查timer用法：
+
+	Create Timersimplegui.create_timer()
+	Start Timertimer.start()
+	Stop Timer
+
+不太有思路，找了[例子]([Screensaver](http://www.codeskulptor.org/#examples-timers.py)来看。timer的两个关键要素：间隔和动作。间隔容易处理，那么希望间隔后做什么事情？一次间隔画出记录中的一步。
+
+画出记录意味着从list中读取历史，那么问题来了，既要读取第几步，又要读取这一步的参数，咋整？list是二维的吗？简单查了一下，list支持二维，尝试写下：
+
+	def replayStep():
+	    global clickCount,Radius
+	    if clickCount > 0 :
+	        if shape_list[clickCount-1][1] == "circle":
+	            canvas.draw_circle(shape_list[clickCount],Radius,1,"Black",shape_list[clickCount][2] )
+	        else :
+	            canvas.draw_polygon(shape_list[clickCount],1,"Black",shape_list[clickCount][2] )
+	        clickCount -= 1
+
+提示是 ``NameError: name 'canvas' is not defined``，看来canvas.draw不能随便调用。
+
+####调节速度
+
+###10.输出为文件
