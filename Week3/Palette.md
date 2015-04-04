@@ -112,7 +112,7 @@
 
 还是迷迷糊糊，直到画了个图来帮助理解：
 
-	![](http://img.hb.aicdn.com/53ca57f3ff22dbeec300a4c2196ed341ba722a295214-HlXq0F)
+![](http://img.hb.aicdn.com/53ca57f3ff22dbeec300a4c2196ed341ba722a295214-HlXq0F)
 
 #####D-解决：
 
