@@ -1,4 +1,6 @@
-#要求
+#第三周Miniproject：点彩画板
+
+##要求
 唯一作业:可回放的点彩画板
 
 - 期待:
@@ -13,11 +15,13 @@
     + 合格: 有画笔,有颜色,可点绘,可回放
     + 天才: 有画笔,有颜色,可点绘,可回放,回放速度可调节,回放可输出为文件
 
-[作业Codeskulptor源码链接](http://www.codeskulptor.org/#user39_mI9h518rF5_1.py)
-
-http://www.codeskulptor.org/#user39_mI9h518rF5_5.py
+##作业地址
+- Codesculptor: [点彩画板V1](http://www.codeskulptor.org/#user39_mI9h518rF5_5.py) （[测试版本](http://www.codeskulptor.org/#user39_mI9h518rF5_1.py)）
+- [Github 源代码](https://github.com/kidult00/omooc.py/blob/master/src/iippy-2/Palette.py)
+- [Github 教程](https://github.com/kidult00/pythoncamp0/blob/master/Week3/Palette.md)
+- [Gitbook 教程](http://kidult00.gitbooks.io/kidult-s-python-book/content/Week3/Palette.html)
    
-#分析
+##分析
 实现顺序
 
 - 画三种形状 【done】
@@ -36,7 +40,7 @@ http://www.codeskulptor.org/#user39_mI9h518rF5_5.py
 	+ 调节速度
 - 输出为文件
 
-#动手
+##动手
 
 ###1. 准备姿势
 
