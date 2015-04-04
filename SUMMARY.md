@@ -9,3 +9,5 @@
 	* [开学心得](Week1/1_OpeningNote.md)
 * [Week2](README.md)
 	* [MiniProject:Guess the number](Week2/MiniProject-GuessTheNumber.md)
+* [Week3](README.md)
+	* [MiniProject:Palette](Week3/Palette.md)
