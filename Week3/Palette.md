@@ -228,7 +228,7 @@
 	        else:
 	            canvas.draw_polygon(shapes[0], 1, "Black")
  
-运行时对这行``shape_list.append[pos,ShapeType]``报错：``TypeError: '<invalid type>' does not support indexing``。看来是用错了[]。改成 () 后报错``TypeError: append() takes exactly 2 arguments (3 given)``。嗯哪，对list还是不太明白，滚去看 [doc]([Types & Operations](http://www.codeskulptor.org/docs.html#tabs-Types): list用[]没错，但append应该用()，append内用()还是[] ?
+运行时对这行``shape_list.append[pos,ShapeType]``报错：``TypeError: '<invalid type>' does not support indexing``。看来是用错了[]。改成 () 后报错``TypeError: append() takes exactly 2 arguments (3 given)``。嗯哪，对list还是不太明白，滚去看文档 [Types & Operations](http://www.codeskulptor.org/docs.html#tabs-Types): list用 [] 没错，但append应该用 ()，append内用 () 还是 [] ?
 
 code | output
 --- | --- | ---
@@ -237,7 +237,7 @@ a_list.append(4) |
 a_list.append([5, 6, 7]) |
 print a_list |
 
-append里面每个记录应该用[]。
+so，append里面每个记录应该用[]。
 
 修改后继续报错 - - 。检查代码后发现 ``if shapes[0] == "circle":`` 调用错了list中shape的位置，修改0为1。终于把三种图形画出来了。
 
@@ -270,12 +270,15 @@ append里面每个记录应该用[]。
             
 ###6.设置RGB颜色
 
+未实现
 
 ###7.点击任意一处可绘制
 
-特殊位置
+####特殊位置
+未实现
 
-重叠位置
+####重叠位置
+未实现
 
 ###8.记录1024次（约0.25小时）
 
@@ -310,7 +313,7 @@ Done.
 	Start Timertimer.start()
 	Stop Timer
 
-不太有思路，找了[例子]([Screensaver](http://www.codeskulptor.org/#examples-timers.py)来看。timer的两个关键要素：间隔和动作。间隔容易处理，那么希望间隔后做什么事情？一次间隔画出记录中的一步。
+不太有思路，找了例子 [Screensaver](http://www.codeskulptor.org/#examples-timers.py) 来看。timer的两个关键要素：间隔和动作。间隔容易处理，那么希望间隔后做什么事情？一次间隔画出记录中的一步。
 
 ####折腾1：每步读取历史
 
@@ -374,7 +377,7 @@ Done.
 - 引入步骤变量 step 后，混淆 step 和 history_step，以致弄错循环对象：shape_list.append(history_list[step])
 - step 加1放在了 for 循环后面，导致回放时会少绘制最后一个点
 
-当然，最致命的错误，是没有将step定义为全局变量，导致提示 ``undefined: Error: local variable 'step' referenced before assignment``。开始还尝试定义局部变量解决这个问题，运行结果是一旦开始回放，就把之前绘制的图形清空到只剩下最初的那一个。说明记录并没有被保存。检查了很久没有发现问题，再次偷看同学作业，终于发现全局变量的问题。
+当然，最致命的错误，是***没有将step定义为全局变量***，导致提示 ``undefined: Error: local variable 'step' referenced before assignment``。开始还尝试定义局部变量解决这个问题，运行结果是一旦开始回放，就把之前绘制的图形清空到只剩下最初的那一个。说明记录并没有被保存。检查了很久没有发现问题，再次偷看同学作业，终于发现全局变量的问题。
 
 将step定义为全局变量后，问题解决。
 
