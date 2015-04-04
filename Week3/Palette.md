@@ -16,7 +16,7 @@
     + 天才: 有画笔,有颜色,可点绘,可回放,回放速度可调节,回放可输出为文件
 
 ##二、作业地址
-- Codesculptor: [点彩画板V1](http://www.codeskulptor.org/#user39_mI9h518rF5_5.py) （[测试版本](http://www.codeskulptor.org/#user39_mI9h518rF5_1.py)）
+- Codesculptor: [点彩画板V1](http://www.codeskulptor.org/#user39_mI9h518rF5.py) （[测试版本](http://www.codeskulptor.org/#user39_mI9h518rF5_1.py)）
 - [Github 源代码](https://github.com/kidult00/omooc.py/blob/master/src/iippy-2/Palette.py)
 - [Github 教程](https://github.com/kidult00/pythoncamp0/blob/master/Week3/Palette.md)
 - [Gitbook 教程](http://kidult00.gitbooks.io/kidult-s-python-book/content/Week3/Palette.html)
