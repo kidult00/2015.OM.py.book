@@ -92,7 +92,7 @@
 
 但这里需要取到x和y的值，用来计算三角形的三个点的坐标。画个图来帮助理解
 
-![](/Users/ennolin/Pictures/Triangle.png)
+![](http://img.hb.aicdn.com/53ca57f3ff22dbeec300a4c2196ed341ba722a295214-HlXq0F)
 
 
 为什么提示undefined？
