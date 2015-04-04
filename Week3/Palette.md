@@ -32,7 +32,7 @@ http://www.codeskulptor.org/#user39_mI9h518rF5_5.py
 	+ 特殊位置
 	+ 重叠位置
 - 记录1024次 【done】
-- 回放 
+- 回放 【done】
 	+ 调节速度
 - 输出为文件
 
@@ -64,7 +64,7 @@ http://www.codeskulptor.org/#user39_mI9h518rF5_5.py
 	
 	# Always remember to review the grading rubric
 
-###2. 画三种形状
+###2. 画三种形状 （约1.5小时）
 到[课程栗子](http://www.codeskulptor.org/#examples-mouse_input.py)复习如何用鼠标画圆。
 
 ####画圆形
@@ -112,7 +112,7 @@ http://www.codeskulptor.org/#user39_mI9h518rF5_5.py
 
 原理同三角形
 
-###3.保存已绘图形
+###3.保存已绘图形（约0.5小时）
 
 参考[课程](http://www.codeskulptor.org/#examples-list_of_balls.py)
 
@@ -129,7 +129,7 @@ http://www.codeskulptor.org/#user39_mI9h518rF5_5.py
 
     shape_list.append(pos)
    
-###4.设置形状
+###4.设置形状（约0.75小时）
 
 在画布中给出三个形状的按钮，然后定义各自的 event handler。在draw函数中用if判断绘制圆形还是多边形（三角形和正方形）。按这个思路写完会报错，在圆形和多边形切换的时候，问题出在记录的pos进行 2点/3点 的切换。(上面画三角形时的疑问又出来了)
 
@@ -195,7 +195,7 @@ print a_list |
 
 append里面每个记录应该用[]。修改后继续报错 - - 。检查代码后发现 ``if shapes[0] == "circle":`` 调用错了list中shape的位置，修改0为1。终于把三种图形画出来了。
 
-###5.设置颜色
+###5.设置颜色（约0.25小时）
 
 思路自然是像坐标一样记录到list中，但是这样写完，运行结果是更换颜色后，所有点的颜色都跟着变了。
 
@@ -223,7 +223,7 @@ append里面每个记录应该用[]。修改后继续报错 - - 。检查代码�
 
 重叠位置
 
-###8.记录1024次 
+###8.记录1024次（约0.25小时）
 
 思路：每click（还是draw）一次，计数器+1。
 
@@ -241,7 +241,9 @@ append里面每个记录应该用[]。修改后继续报错 - - 。检查代码�
 	
 Done.
 
-###9.回放 
+###9.回放（约3小时）
+
+####分析
 
 之前有同学剧透是用timer控制。先去doc里面查了查timer用法：
 
@@ -251,6 +253,7 @@ Done.
 
 不太有思路，找了[例子]([Screensaver](http://www.codeskulptor.org/#examples-timers.py)来看。timer的两个关键要素：间隔和动作。间隔容易处理，那么希望间隔后做什么事情？一次间隔画出记录中的一步。
 
+####折腾1：每步读取历史
 画出记录意味着从list中读取历史，那么问题来了，既要读取第几步，又要读取这一步的参数，咋整？list是二维的吗？简单查了一下，list支持二维，尝试写下：
 
 	def replayStep():
@@ -262,8 +265,54 @@ Done.
 	            canvas.draw_polygon(shape_list[clickCount],1,"Black",shape_list[clickCount][2] )
 	        clickCount -= 1
 
-提示是 ``NameError: name 'canvas' is not defined``，看来canvas.draw不能随便调用。
+提示是 ``NameError: name 'canvas' is not defined``，看来 canvas.draw 不能随便调用。
+
+####折腾2：在回放函数中重绘历史
+
+又偷看了同学的作业，思路是在回放函数中整个重绘。之前思路的问题，过于相信程序的强大，想当然地认为回放过的记录会保留在画布中，每次间隔后只绘制下一个点。其实，每次绘制的步骤都是：将需要绘制的点全部绘制一遍。因为有timer的间隔，所以看上去是新增了最近的一个点。于是画布干的事情是**每次间隔后清空整个画布并全量重新绘制**。（又或许确实有优雅的方法只绘制增量？）
+
+再理一下步骤：
+
+- 复制原来的 list
+- 画布上清空原来的 list
+- 计算回放步数：原来list中有多少个形状？
+- 在回放步数范围内，整个重绘：在新 list 中 append 每个形状
+
+		def replayStep():
+		    global clickCount,shape_list,history_list
+		
+		    shape_list = [] #清空
+		
+		    if step < clickCount :
+		        step += 1
+		        for history_step in range(0,step):
+		                shape_list.append(history_list[history_step])
+		    else:
+		        step = 0
+
+期间经历的错误包括：
+
+- if语句忘记以 ``:`` 结尾
+- 定义了一个局部变量表示历史步骤数，而不是直接使用已经定义的全局变量 clickCount
+- 不知道如何写历史步骤 history_step 的 for 语句，学习 range() 后理解错误，写成 ``range(0,history_step)``自循环
+- 引入步骤变量 step 后，混淆 step 和 history_step，以致弄错循环对象：shape_list.append(history_list[step])
+- step 加1放在了 for 循环后面，导致回放时会少绘制最后一个点
+
+当然，最致命的错误，是没有将step定义为全局变量，导致提示 ``undefined: Error: local variable 'step' referenced before assignment``。开始还尝试定义局部变量解决这个问题，运行结果是一旦开始回放，就把之前绘制的图形清空到只剩下最初的那一个。说明记录并没有被保存。检查了很久没有发现问题，再次偷看同学作业，终于发现全局变量的问题。
+
+将step定义为全局变量后，问题解决。
+
 
 ####调节速度
 
 ###10.输出为文件
+
+###todo
+
+- 在回放过程中增加形状，回放结束会报错
+
+### Do it better next time
+
+1. 多动手画逻辑
+2. 看别人代码时，首先弄清楚变量和变量之间的关系
+3. 将自己分析的逻辑写下来/画出来，否则会有很多模棱两可的东西，大脑经常需要回到前几个节点重新开始
