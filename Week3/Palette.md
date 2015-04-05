@@ -24,19 +24,18 @@
 ##三、分析
 拆解任务，计划按以下顺序逐一攻破：
 
-- 画三种形状 【done】
+- 画三种形状 【√】
 	+ 圆形怎么画
 	+ 三角怎么画
 	+ 方形怎么画
-- 保存已绘图形 【done】
-- 设置形状 【done】
-- 设置颜色 【done】
+- 保存已绘图形 【√】
+- 设置形状 【√】
+- 设置颜色 【√】
 - 设置RGB颜色
-- 点击任意一处可绘制
-	+ 特殊位置
+- 点击任意一处可绘制 【√】
 	+ 重叠位置
-- 记录1024次 【done】
-- 回放 【done】
+- 记录1024次 【√】
+- 回放 【√】
 	+ 调节速度
 - 输出为文件
 
@@ -274,9 +273,6 @@ so，append里面每个记录应该用[]。
 
 ###7.点击任意一处可绘制
 
-####特殊位置
-未实现
-
 ####重叠位置
 未实现
 
@@ -383,14 +379,70 @@ Done.
 
 
 ####调节速度
-未实现
+
+####A-思路
+通过设置 timer 的 interval 实现速度调节
+
+####B-问题
+
+这些写出来后，发现运行无效，也不报错。
+	
+	def speedup():
+	    global interval
+	    interval += 500
+	
+	def slowdown():
+	    global interval
+	    interval -= 500
+	
+	frame.add_button("加快0.5秒\n",speedup,100)
+	frame.add_button("减慢0.5秒\n",slowdown,100)
+
+	timer = simplegui.create_timer(interval,replayStep)
+
+####C-分析和解决
+
+不报错说明语法没问题，不生效说明还是按之前的 timer 设定去执行。所以应该再次 start timer？
+
+	def speedup():
+	    global interval
+	    interval += 500
+	    timer = simplegui.create_timer(interval,replayStep)
+	    timer.start()
+	
+	def slowdown():
+	    global interval
+	    interval -= 500
+	    timer = simplegui.create_timer(interval,replayStep)
+	    timer.start()
+
+修改后运行，发现回放时每个点的间隔不一样，按了减慢按钮后反而加快了  - -
+
+再次偷看作业后，发现需要先暂停已经在运行的 timer 。
+	
+	def speedup():
+	    global interval #,timer
+	    if timer.is_running():
+	        timer.stop()
+	        interval += 500
+	        timer = simplegui.create_timer(interval,replayStep)
+	        timer.start()
+
+修改后运行报错 ``undefined: Error: local variable 'timer' referenced before assignment``，原来 timer 是个变量，需要定义为全局变量呃。。。
+
+修改后运行发现两个问题：
+
+- 加快和减慢的参数设反了。。。加快应该是间隔变小
+- 减慢到0以后会报错
+
+于是将间隔修改为 加速-原间隔/2，减速-原间隔*2 ，问题解决。
 
 ###10.输出为文件
 未实现
 
 ###五、todo
 
-- 在回放过程中增加形状，回放结束会报错
+- ~~在回放过程中增加形状，回放结束会报错~~
 
 ###六、Do it better next time
 
