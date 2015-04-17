@@ -127,6 +127,15 @@ ai_num()问题
 
 - 尝试：
 
+		if step < guess_time :
+        	for i in range(0,step):
+            	guess_list.append(done_list)
+	        step += 1
+    	else:
+    	    step = 0
+- 回放时无显示。中间有事停了4天。。。。回头检查了一个晚上也没检查出来。隔了一个晚上再来看，发现 append 的时候 done_list 少了指针。加上后实现回放，但是回放的是一个猜数步骤，而不是全过程，而且会循环回放，需要解决这两个问题。
+
+
 ###Do it better next time
 - 画程序思路时，需要层层细化，先是功能拆分，然后是各事件和函数的关系，再是各函数内部的逻辑，以及算法。不要指望一个图概括全部。
 - 常见错误：
