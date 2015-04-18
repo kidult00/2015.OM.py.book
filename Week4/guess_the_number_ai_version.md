@@ -18,7 +18,7 @@
         * 怎么证明自个儿的 AI 策略是最优的?能用最少次数猜中?
         
 ##二、作业地址
-- Codesculptor: [点彩画板V1](http://www.codeskulptor.org/#user39_mI9h518rF5_8.py) （[版本1：实现基本猜数功能](http://www.codeskulptor.org/#user39_ILZDVOyDt5_1.py)）
+- Codesculptor: [版本2：实现历史记录](http://www.codeskulptor.org/#user39_ILZDVOyDt5_2.py) （[版本1：实现基本猜数功能](http://www.codeskulptor.org/#user39_ILZDVOyDt5_1.py)）
 
 
 ##三、分析
