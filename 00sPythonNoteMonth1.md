@@ -79,7 +79,7 @@
 
 下面的代码虽然只有几行，但是综合了变量、运算、循环判断、数组等等，浓缩是浓缩，坑也很多……
 
-	for shapes in shape_list:
+	for shapes in shape_list: //Python
         if shapes[1] == "circle":
             canvas.draw_circle(shapes[0],Radius, 1, "Black",shapes[2])
         else:
