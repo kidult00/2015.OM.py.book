@@ -13,7 +13,7 @@
 
 我们需要有一个东西来代表“今天是周几”，可能性有 7 种，但是活在当下的只有 1 个，于是需要一个“替身”，框定它的“变身”范围是周一至周日，然后让它根据条件变变变…… 
 
-![](/Users/kidult/SkyDrive/Documents/Doing/AAA/20150418那些绕不过的编程概念/weekdays.png)
+![](http://upload-images.jianshu.io/upload_images/149-88c3e8ce4c20d968.png)
 
 **这是对编程思维的第一个训练：【抽象】将某种类型、某个范围内变化的“实例”，抽象为一个“代号”。**
 
@@ -102,7 +102,7 @@
 
 每个函数，都是哆啦A梦百宝袋里面的一件宝物！
 
-![](/Users/kidult/SkyDrive/Documents/Doing/AAA/20150418那些绕不过的编程概念/哆啦A梦.png)
+![](http://upload-images.jianshu.io/upload_images/149-d1e2d127e2691326.png)
 
 宝物的特点是什么？实现大雄的一个愿望。至于怎么实现的，大雄并不用担心。当然，想实现多个愿望，最好不要指望于一件宝物，那样往往会出bug……
 
