@@ -165,25 +165,25 @@ JD（招聘职位描述）：
 
 类：
 
-	```Python
-		class Character:
-		   def __init__(self, name, initial_health):   # __int__ 初始化对象
-		       self.name = name					# self 是新的对象的引用
-		       self.health = initial_health	# name 和 health 是self对象中的域(field)
-		       self.inventory = []
-		       
-		   def __str__(self):
-		       s  = "Name: " + self.name
-		       s += " Health: " + str(self.health)
-		       s += " Inventory: " + str(self.inventory)
-		       return s
-		   
-		   def grab(self, item):			# methond defines the behaviors of objects
-		       self.inventory.append(item)
-		       
-		   def get_health(self):			# method 所有方法的第一个参数都是self
-		       return self.health
-	```	       
+```Python
+	class Character:
+	   def __init__(self, name, initial_health):   # __int__ 初始化对象
+	       self.name = name					# self 是新的对象的引用
+	       self.health = initial_health	# name 和 health 是self对象中的域(field)
+	       self.inventory = []
+	       
+	   def __str__(self):
+	       s  = "Name: " + self.name
+	       s += " Health: " + str(self.health)
+	       s += " Inventory: " + str(self.inventory)
+	       return s
+	   
+	   def grab(self, item):			# methond defines the behaviors of objects
+	       self.inventory.append(item)
+	       
+	   def get_health(self):			# method 所有方法的第一个参数都是self
+	       return self.health
+```	       
 
 工作要求其实就相当于类的“属性”，作为这类人，本身需要具备什么样的条件和素质；工作职责相当于类的“行为”，这类人要干什么事情。
 
