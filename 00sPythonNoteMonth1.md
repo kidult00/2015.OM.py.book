@@ -79,13 +79,14 @@
 
 下面的代码虽然只有几行，但是综合了变量、运算、循环判断、数组等等，浓缩是浓缩，坑也很多……
 
-	```Python
-		for shapes in shape_list: //Python
-	        if shapes[1] == "circle":
-	            canvas.draw_circle(shapes[0],Radius, 1, "Black",shapes[2])
-	        else:
-	            canvas.draw_polygon(shapes[0], 1, "Black",shapes[2])
-	```
+```Python
+	for shapes in shape_list: //Python
+        if shapes[1] == "circle":
+            canvas.draw_circle(shapes[0],Radius, 1, "Black",shapes[2])
+        else:
+            canvas.draw_polygon(shapes[0], 1, "Black",shapes[2])
+```
+
 **以上对编程思维的第三个训练：【自动化】找出条件，识别共同步骤，循环处理，实现量变到质变。**
 
 坑：
