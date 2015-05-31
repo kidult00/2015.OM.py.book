@@ -15,4 +15,7 @@
 	* [MiniProject:Guess the number - AI version](Week4/guess_the_number_ai_version.md)
 * [Week5]
 	* [小白月回顾](00sPythonNoteMonth1.md)
+
+* [项目实战]
+	* [基于 SAE 的微信查书快手开发笔记](ProjectNote/SAE_ProjetNote.md)
 	
