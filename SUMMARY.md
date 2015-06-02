@@ -17,5 +17,5 @@
 	* [小白月回顾](00sPythonNoteMonth1.md)
 
 * [项目实战]
-	* [基于 SAE 的微信查书快手开发笔记](ProjectNote/SAE_ProjetNote.md)
+	* [基于 SAE 的微信小小书童开发笔记](ProjectNote/SAE_ProjetNote.md)
 	
